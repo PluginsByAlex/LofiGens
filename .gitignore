@@ -92,4 +92,7 @@ secrets.yml
 local.yml
 
 # Test plugins folder
-test-server/ 
+test-server/
+
+# Todo file
+todo.md 

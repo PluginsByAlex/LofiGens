@@ -1,0 +1,102 @@
+name: Build and Release
+
+on:
+  push:
+    branches: [ main, master ]
+    tags: [ 'v*' ]
+  pull_request:
+    branches: [ main, master ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+      
+    - name: Set up JDK 17
+      uses: actions/setup-java@v4
+      with:
+        java-version: '17'
+        distribution: 'temurin'
+        
+    - name: Cache Maven dependencies
+      uses: actions/cache@v4
+      with:
+        path: ~/.m2
+        key: ${{ runner.os }}-m2-${{ hashFiles('**/pom.xml') }}
+        restore-keys: ${{ runner.os }}-m2
+        
+    - name: Build with Maven
+      run: mvn clean compile package
+      
+    - name: Upload build artifacts
+      uses: actions/upload-artifact@v4
+      with:
+        name: LofiGens-JAR
+        path: target/LofiGens-*.jar
+        
+  release:
+    needs: build
+    runs-on: ubuntu-latest
+    if: startsWith(github.ref, 'refs/tags/v')
+    permissions:
+      contents: write
+    
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+      
+    - name: Set up JDK 17
+      uses: actions/setup-java@v4
+      with:
+        java-version: '17'
+        distribution: 'temurin'
+        
+    - name: Build with Maven
+      run: mvn clean compile package
+      
+    - name: Get version from tag
+      id: get_version
+      run: echo "VERSION=${GITHUB_REF#refs/tags/v}" >> $GITHUB_OUTPUT
+      
+    - name: Create Release
+      uses: softprops/action-gh-release@v2
+      with:
+        tag_name: ${{ github.ref_name }}
+        name: LofiGens v${{ steps.get_version.outputs.VERSION }}
+        body: |
+          ## LofiGens v${{ steps.get_version.outputs.VERSION }}
+          
+          ### Features
+          - Generator system with automated resource generation
+          - Event system for special occasions and bonuses
+          - Jackpot functionality for exciting rewards
+          - Interactive holograms for visual feedback
+          - PlaceholderAPI integration for dynamic displays
+          - Configurable generators and events via config.yml
+          - Admin commands for managing generators and events
+          
+          ### Installation
+          1. Download the JAR file below
+          2. Place it in your server's `plugins` folder
+          3. Restart your server
+          4. Configure generators and events in `plugins/LofiGens/config.yml`
+          
+          ### Commands
+          - `/generator` - Manage generators
+          - `/generators` - View all generators
+          - `/event` - Manage events
+          - `/eventitems` - Manage event items
+          - `/jackpot` - Jackpot functionality
+          
+          ### Dependencies
+          - PlaceholderAPI (optional but recommended)
+          - HologramDisplays or similar hologram plugin
+          
+          ### Support
+          For issues and support, please visit the GitHub repository.
+        files: target/LofiGens-*.jar
+        draft: false
+        prerelease: false 
