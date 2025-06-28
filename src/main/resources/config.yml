@@ -1,0 +1,200 @@
+# LofiGens Plugin Configuration
+
+# Integration settings
+enable-plotsquared-integration: true
+
+# Default generator slots per player
+default-generator-slots: 5
+max-generator-slots: 50
+
+# Hologram settings
+holograms:
+  enabled: true
+  update-interval: 20 # ticks
+  height-offset: 1.5
+
+# Generator settings
+generators:
+  coal_generator:
+    type: ITEM
+    name: "&7Coal Generator"
+    item: COAL
+    block_type: COAL_BLOCK
+    spawn_interval: 1
+    upgrade_to: iron_generator
+    upgrade_price: 5000
+
+  iron_generator:
+    type: ITEM
+    name: "&7Iron Generator"
+    item: IRON_INGOT
+    block_type: IRON_BLOCK
+    spawn_interval: 2
+
+  command_generator:
+    type: COMMAND
+    name: "&7Command Generator"
+    command: "give %player_name% diamond 1"
+    spawn_interval: 3
+
+  exp_generator:
+    type: EXP
+    block_type: EMERALD_BLOCK
+    name: "&aEXP Generator"
+    amount_of_EXP: 10
+    spawn_interval: 5
+    upgrade_to: advanced_exp_generator
+    upgrade_price: 5000
+
+  advanced_exp_generator:
+    type: EXP
+    block_type: EMERALD_BLOCK
+    name: "&aAdvanced EXP Generator"
+    amount_of_EXP: 20
+    spawn_interval: 5
+
+  unstable_generator:
+    type: UNSTABLE
+    item: DIAMOND
+    name: "&cUnstable Generator"
+    spawn_interval: 3
+    break_chance: 0.2
+    repair_cost: 5
+    block_type_working: DIAMOND_BLOCK
+    block_type_broken: STONE
+    particle_when_placed: HEART
+    particle_when_broken: FLAME
+
+  overclocked_generator:
+    type: OVERCLOCKED
+    name: "&aOverclocked Generator"
+    items:
+      - REDSTONE
+      - DIAMOND
+      - EMERALD
+    amount: 200
+    spawn_interval: 1
+    particles: FLAME
+
+# Overclocked repair item
+repair_item:
+  item: GOLD_NUGGET
+  name: "&aRepair Token"
+  lore:
+    - "Use this item to repair"
+    - "unstable generators"
+
+# Event items
+event_items:
+  5_min_warp:
+    type: TIME_WARP
+    item: CLOCK
+    duration: 300
+    name: "&b5-Minute Time Warp"
+    lore:
+      - "&7Use this item to instantly"
+      - "&7warp 5 minutes ahead in time!"
+
+  double_items_10_min:
+    type: DOUBLE_ITEMS
+    item: CLOCK
+    duration: 600
+    name: "&eDouble Items (10 min)"
+    lore:
+      - "&7Activate this item to double the"
+      - "&7items generated from all generators."
+      - "&7Lasts for 10 minutes."
+
+# Jackpot settings
+jackpot:
+  enabled: true
+  draw_time: 3600 # seconds
+  revoked_players:
+    - player1
+    - player2
+    - player3
+  generators:
+    jackpot_generator1:
+      type: JACKPOT
+      name: "&6Jackpot Generator Tier 1"
+      block_type: DIAMOND_BLOCK
+      generate_interval: 300
+      min_generate_amount: 1000
+      max_generate_amount: 5000
+    jackpot_generator2:
+      type: JACKPOT
+      name: "&6Jackpot Generator Tier 2"
+      block_type: EMERALD_BLOCK
+      generate_interval: 300
+      min_generate_amount: 2000
+      max_generate_amount: 5000
+  sounds:
+    enabled: true
+    sound_on_win: ENTITY_PLAYER_LEVELUP
+  particles:
+    enabled: true
+    particle_on_win: HEART
+    amount: 10
+  messages:
+    jackpot_winner: "&eCongratulations! You have won the jackpot! You have been awarded %jackpot_amount%."
+    jackpot_announcement: "&eJackpot Winner: %winner%. They have won %jackpot_amount%!"
+    jackpot_limit_reached: "&cYou have reached the maximum limit of Jackpot generators you can place."
+
+# Announcements settings
+announcements:
+  enabled: true
+  overclocked_start: "%player_name% has started an Overclocked Generator"
+  overclocked_finish: "%player_name%'s Overclocked generator has broken"
+  double_item_token_used: "%player_name% has used a Double Item Token! It lasts for %duration%."
+
+# Messages
+messages:
+  generator_placed: "&aYou have placed a generator. You currently have %num_generators% generators placed. Maximum allowed: %max_generators%."
+  max_generators_reached: "&cYou have reached the maximum allowed number of generators."
+  item_generated: "&e%item% &7generated from your generator!"
+  generator_broken: "&cYour generator has broken down!"
+  generator_repaired: "&aYour generator is back up and running!"
+  warp_not_allowed: "&cTime warping is not allowed in this location."
+  jackpot_contributed: "&aYour generator has contributed %amount% to the jackpot!"
+  no_permission: "&cYou don't have permission to do that!"
+  player_not_found: "&cPlayer not found!"
+  invalid_generator: "&cInvalid generator type!"
+  invalid_amount: "&cInvalid amount specified!"
+  not_enough_slots: "&cYou don't have enough generator slots!"
+  generator_given: "&aYou have been given %amount%x %generator%!"
+  slots_added: "&a%amount% generator slots have been added to %player%!"
+  slots_removed: "&c%amount% generator slots have been removed from %player%!"
+  data_reset: "&aAll plugin data has been reset!"
+  reload_success: "&aLofiGens has been reloaded successfully!"
+
+# GUI Settings
+gui:
+  time_warp:
+    title: "&bTime Warp - Your Generators"
+    size: 54
+    border_item: BLACK_STAINED_GLASS_PANE
+    close_item: BARRIER
+    next_page_item: LIME_STAINED_GLASS_PANE
+    prev_page_item: RED_STAINED_GLASS_PANE
+  
+  jackpot:
+    title: "&6Jackpot Information"
+    size: 27
+    jackpot_info_slot: 11
+    last_winner_slot: 15
+
+# Sound settings
+sounds:
+  enabled: true
+  generator_place: BLOCK_STONE_PLACE
+  generator_break: BLOCK_STONE_BREAK
+  item_generate: ENTITY_EXPERIENCE_ORB_PICKUP
+  event_start: ENTITY_PLAYER_LEVELUP
+  jackpot_win: ENTITY_PLAYER_LEVELUP
+
+# Particle settings
+particles:
+  enabled: true
+  generator_working: HEART
+  generator_broken: SMOKE_LARGE
+  event_active: FIREWORKS_SPARK 

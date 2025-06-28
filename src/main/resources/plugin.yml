@@ -1,0 +1,98 @@
+name: LofiGens
+version: '1.0.0'
+description: A comprehensive generator plugin for Minecraft
+author: LofiDev
+website: https://github.com/youruser/LofiGens
+main: com.lofigens.LofiGens
+api-version: '1.21'
+depend: []
+softdepend: [PlotSquared, PlaceholderAPI, HeadDatabase]
+
+commands:
+  generators:
+    description: Main generator command
+    aliases: [gen, lg]
+    usage: /<command> [help|slots|sync|holograms]
+    permission: lofigens.use
+  
+  generator:
+    description: Generator management command
+    usage: /<command> <slots|sync> [player]
+    permission: lofigens.use
+  
+  jackpot:
+    description: Jackpot system command
+    usage: /<command> <view|draw|revoke> [player]
+    permission: lofigens.jackpot.view
+  
+  eventitems:
+    description: Event items management
+    aliases: [ei]
+    usage: /<command> give <player> <item> [amount]
+    permission: lofigens.eventitems.give
+  
+  event:
+    description: Force events
+    usage: /<command> force <event> <time> <global/player>
+    permission: lofigens.event.force
+
+permissions:
+  lofigens.*:
+    description: All LofiGens permissions
+    default: op
+    children:
+      lofigens.use: true
+      lofigens.give: true
+      lofigens.slots.add: true
+      lofigens.slots.remove: true
+      lofigens.reset: true
+      lofigens.eventitems.give: true
+      lofigens.event.force: true
+      lofigens.jackpot.forcedraw: true
+      lofigens.jackpot.revoke: true
+      lofigens.jackpot.view: true
+      lofigens.admin: true
+  
+  lofigens.use:
+    description: Basic generator usage
+    default: true
+  
+  lofigens.give:
+    description: Give generators to players
+    default: op
+  
+  lofigens.slots.add:
+    description: Add generator slots to players
+    default: op
+  
+  lofigens.slots.remove:
+    description: Remove generator slots from players
+    default: op
+  
+  lofigens.reset:
+    description: Reset plugin data
+    default: op
+  
+  lofigens.eventitems.give:
+    description: Give event items to players
+    default: op
+  
+  lofigens.event.force:
+    description: Force events
+    default: op
+  
+  lofigens.jackpot.view:
+    description: View jackpot
+    default: true
+  
+  lofigens.jackpot.forcedraw:
+    description: Force jackpot draw
+    default: op
+  
+  lofigens.jackpot.revoke:
+    description: Revoke jackpot winner
+    default: op
+  
+  lofigens.admin:
+    description: Admin permissions
+    default: op 
