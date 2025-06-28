@@ -10,9 +10,9 @@ softdepend: [PlotSquared, PlaceholderAPI, HeadDatabase]
 
 commands:
   generators:
-    description: Main generator command
+    description: Display help menu and manage generators
     aliases: [gen, lg]
-    usage: /<command> [help|slots|sync|holograms]
+    usage: /<command> [help|give|slots|reset|holograms]
     permission: lofigens.use
   
   generator:

@@ -37,7 +37,7 @@ LofiGens is a comprehensive generator plugin for Minecraft 1.21.4 that provides 
 
 ## 📦 Installation
 
-1. Download the latest release from [GitHub Releases](https://github.com/youruser/LofiGens/releases)
+1. Download the latest release from [GitHub Releases](https://github.com/pluginsbyalex/LofiGens/releases)
 2. Place the `LofiGens.jar` file in your server's `plugins` folder
 3. Restart your server
 4. Configure the plugin by editing `plugins/LofiGens/config.yml`
@@ -122,7 +122,7 @@ generators:
 ### Build Steps
 1. Clone the repository:
    ```bash
-   git clone https://github.com/youruser/LofiGens.git
+   git clone https://github.com/pluginsbyalex/LofiGens.git
    cd LofiGens
    ```
 
@@ -135,7 +135,7 @@ generators:
 
 ## 🐛 Bug Reports & Feature Requests
 
-Please use the [GitHub Issues](https://github.com/youruser/LofiGens/issues) page to report bugs or request new features.
+Please use the [GitHub Issues](https://github.com/pluginsbyalex/LofiGens/issues) page to report bugs or request new features.
 
 ## 📄 License
 
@@ -152,7 +152,7 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 ## 📞 Support
 
 - Discord: [Join our Discord server](https://discord.gg/yourserver)
-- GitHub Issues: [Report bugs here](https://github.com/youruser/LofiGens/issues)
+- GitHub Issues: [Report bugs here](https://github.com/pluginsbyalex/LofiGens/issues)
 - SpigotMC: [Plugin page](https://www.spigotmc.org/resources/lofigens.xxxxx/)
 
 ## 🔄 Changelog

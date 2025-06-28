@@ -6,6 +6,7 @@ import com.lofigens.managers.*;
 import com.lofigens.placeholders.LofiGensPlaceholders;
 import com.lofigens.utils.ConfigManager;
 import com.lofigens.utils.MessageUtil;
+import com.lofigens.utils.TabCompleter;
 import org.bukkit.Bukkit;
 import org.bukkit.plugin.java.JavaPlugin;
 
@@ -117,20 +118,28 @@ public class LofiGens extends JavaPlugin {
     }
     
     private void registerCommands() {
+        // Create tab completer
+        TabCompleter tabCompleter = new TabCompleter(this);
+        
         // Main generator commands
         getCommand("generators").setExecutor(new GeneratorsCommand(this));
+        getCommand("generators").setTabCompleter(tabCompleter);
         getCommand("generator").setExecutor(new GeneratorCommand(this));
+        getCommand("generator").setTabCompleter(tabCompleter);
         
         // Jackpot commands
         getCommand("jackpot").setExecutor(new JackpotCommand(this));
+        getCommand("jackpot").setTabCompleter(tabCompleter);
         
         // Event items commands
         getCommand("eventitems").setExecutor(new EventItemsCommand(this));
+        getCommand("eventitems").setTabCompleter(tabCompleter);
         
         // Event force commands
         getCommand("event").setExecutor(new EventCommand(this));
+        getCommand("event").setTabCompleter(tabCompleter);
         
-        logger.info("Commands registered successfully!");
+        logger.info("Commands and tab completers registered successfully!");
     }
     
     private void registerListeners() {
